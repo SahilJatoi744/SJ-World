@@ -1,0 +1,18 @@
+﻿@model Shopping_Cart.Models.category
+@{
+    ViewBag.Title = "AddCategory";
+    Layout = "~/Views/Shared/AdminMaster.cshtml";
+}
+<br />
+
+<center><h2>Add Category</h2></center>
+<br />
+<br />
+@using (Html.BeginForm("AddCategory","Admin",FormMethod.Post))
+{
+    <label>Category Name</label><br /><br />
+    @Html.TextBoxFor(a=>a.Name,new {@class="form-control",placeholder="Category Name here...",required="required" })
+    <br /><br />
+
+    <input type="submit" value="Add Category" class="btn btn-success">
+} 

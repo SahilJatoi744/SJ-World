@@ -1,0 +1,41 @@
+﻿@model Shopping_Cart.Models.user
+@{
+    ViewBag.Title = "EditUser";
+    Layout = "~/Views/Shared/AdminMaster.cshtml";
+}
+<br />
+<center><h2>EditUser</h2></center>
+<br />
+<br />
+@using (Html.BeginForm("EditUser", "Admin", FormMethod.Post))
+{
+    @Html.HiddenFor(a => a.Id)
+    <label>Name</label>
+    <br />
+    <br />
+    @Html.TextBoxFor(a => a.Name, new { @class = "form-control", placeholder = "Category Name here...", required = "required" })
+    <br />
+    <br />
+    <label>Password</label>
+    <br />
+    <br />
+    @Html.TextBoxFor(a => a.Password, new { @class = "form-control", placeholder = "Category Name here...", required = "required" })
+    <br />
+    <br />
+    <label>Email</label>
+    <br />
+    <br />
+    @Html.TextBoxFor(a => a.Email, new { @class = "form-control", placeholder = "Category Name here...", required = "required" })
+    <br />
+    <br />
+    <label>Role</label>
+    <br />
+    <br />
+    @Html.TextBoxFor(a => a.Role, new { @class = "form-control", placeholder = "Category Name here...", required = "required" })
+    <br />
+    <br />
+
+    <input type="submit" value="Edit User" class="btn btn-success">
+}
+
+

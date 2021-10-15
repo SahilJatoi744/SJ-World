@@ -1,0 +1,22 @@
+﻿@model Shopping_Cart.Models.tbl_User
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/UserMaster.cshtml";
+}
+
+<center><h2>Login</h2></center>
+<br />
+<br />
+
+@using (Html.BeginForm("Login", "User", FormMethod.Post))
+{
+    <label>Email :</label>
+    <br />
+    @Html.TextBoxFor(a => a.email, new { @class = "form-control", placeholder = "Email here...", type = "email", required = "required" })<br />
+
+    <label>Password :</label>
+    <br />
+    @Html.TextBoxFor(a => a.password, new { @class = "form-control", placeholder = "Password here...", type = "password", required = "required"})<br />
+
+    <input type="submit" value="Login" class="btn btn-warning" />
+}

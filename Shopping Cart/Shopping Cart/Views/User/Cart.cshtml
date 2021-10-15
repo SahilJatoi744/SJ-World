@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/UserMaster.cshtml";
+}
+<br />
+    <br />
+    <center><h2>Cart</h2></center>
+    <br />
+    <td><a class="btn btn-danger" href="@Url.Action("Remove","User")">Remove Cart</a></td>
+    <br />
+    <br />
+    <table class="table table-bordered">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Category Name</th>
+            <th>Quantity</th>
+            <th>Amount</th>
+            <th>Action</th>
+        </tr>
+        @{
+            var tot = 0;
+
+            foreach (var item in ViewBag.check)
+            {
+                var pro = new Shopping_Cart.Models.MartEntities().products.ToList();
+                foreach (var item1 in pro)
+                {
+                    if (item1.Id == item.id)
+                    {
+                        var amount = item1.Price * item.qty;
+                        tot += amount;
+                        <tr>
+                            <td>@item1.Name</td>
+                            <td>@item1.Price</td>
+                            <td>@item1.category.Name</td>
+                            <td>@item.qty</td>
+                            <td>@amount</td>
+                            <td><a class="btn btn-danger" href="@Url.Action("RemoveItem","User",new {id=item.id})">Remove Item</a></td>
+                        </tr>
+                    }
+                }
+
+            }
+            <tr>
+                <td></td>
+                <td></td>
+                <td colspan="2">TotalAmount</td>
+
+                <td>@tot</td>
+                <td>
+                    @if (Session["id"] != null)
+                    {
+                        <a href="@Url.Action("Checkout","User",new { total=tot })" class="btn btn-warning">Check Out</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Login","User")" class="btn btn-default">Click to Login </a>
+                        <b>If You Want To Proceed More Login First...</b>
+                    }
+                </td>
+
+            </tr>
+        }
+    </table>
+

@@ -1,0 +1,42 @@
+﻿@model List<Shopping_Cart.Models.user>
+@{
+    ViewBag.Title = "ListUser";
+    Layout = "~/Views/Shared/AdminMaster.cshtml";
+}
+<br />
+
+
+<center><h2>ListUser</h2></center>
+<br />
+<br />
+
+<table class="table table-bordered">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>Role</th>
+        <th>Status</th>
+        <th>Action</th>
+        <th>Allow/Deny User</th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>@item.Email</td>
+            <td>@item.Password</td>
+            <td>@item.Role</td>
+            <td>@item.status</td>
+            <td><a href="@Url.Action("DeleteUser","Admin",new { id=item.Id})" class="btn btn-danger"><i class="fas fa-trash"></i></a>|<a href="@Url.Action("EditUser","Admin",new { id=@item.Id})" class="btn btn-info"><i class="fas fa-edit"></i></a>
+            </td>
+            <td>
+                <a href="@Url.Action("TrueStatus","Admin",new { id=item.Id})" class="btn btn-success"><i class="fas fa-check"></i></a>| <a href="@Url.Action("FalseStatus","Admin",new { id=item.Id})" class="btn btn-warning"><i class="fas fa-times"></i></a>
+
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,22 @@
+﻿@model Shopping_Cart.Models.brand
+@{
+    ViewBag.Title = "EditBrand";
+    Layout = "~/Views/Shared/AdminMaster.cshtml";
+}
+<br />
+<center><h2>Edit Brand</h2></center>
+<br />
+<br />
+@using (Html.BeginForm("EditBrand", "Admin", FormMethod.Post))
+{
+    @Html.HiddenFor(a => a.Id)
+    <label>Brand Name</label>
+    <br />
+    <br />
+    @Html.TextBoxFor(a => a.Name, new { @class = "form-control", placeholder = "Brand Name here...", required = "required" })
+    <br />
+    //=> due to it(lamda expression) data will be filled
+    <br />
+
+    <input type="submit" value="Edit Brand" class="btn btn-success">
+}

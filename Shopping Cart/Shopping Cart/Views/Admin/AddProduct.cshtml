@@ -1,0 +1,47 @@
+﻿@model Shopping_Cart.Models.product
+@{
+    ViewBag.Title = "AddProduct";
+    Layout = "~/Views/Shared/AdminMaster.cshtml";
+}
+<br />
+<br />
+<center><h2>Add Product</h2></center>
+<br />
+<br />
+
+@using (Html.BeginForm("AddProduct", "Admin", FormMethod.Post))
+{
+    <label>Product Name:</label>
+    <br />
+    @Html.TextBoxFor(a => a.Name, new { @class = "form-control", required = "required", placeholder = "Product Name here..." })
+    <br />
+
+    <label>Product Price:</label>
+    <br />
+    @Html.TextBoxFor(a => a.Price, new { @class = "form-control", required = "required", placeholder = "Product Price here..." })
+    <br />
+
+    <label>Product Featured:</label>
+    <br />
+    @Html.TextBoxFor(a => a.Featured, new { @class = "form-control", required = "required", placeholder = "Product Featured here..." })
+    <br />
+
+
+    <label>Product Brand:</label>
+    <br />
+    @Html.DropDownList("BrandId", null, new { @class = "form-control", required = "required" })
+    <br />
+
+    <label>Product Category:</label>
+    <br />
+    @Html.DropDownList("CategoryId", null, new { @class = "form-control", required = "required" })
+    <br />
+
+
+    <label>Product Details:</label>
+    <br />
+    @Html.TextAreaFor(a => a.Details, new { @class = "form-control", required = "required", placeholder = "Product Details here..." })
+    <br />
+
+    <input type="submit" value="Add Product" class="btn btn-success">
+}

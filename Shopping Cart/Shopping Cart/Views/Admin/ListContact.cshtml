@@ -1,0 +1,30 @@
+﻿@model List<Shopping_Cart.Models.contactquery>
+@{
+    ViewBag.Title = "ListContact";
+    Layout = "~/Views/Shared/AdminMaster.cshtml";
+}
+<br />
+<center><h2>ListContact</h2></center>
+<br />
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Subject</th>
+        <th>Meassage</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>@item.Id</td>
+    <td>@item.Name</td>
+    <td>@item.Email</td>
+    <td>@item.Subject</td>
+    <td>@item.Message</td>
+    <td><a href="@Url.Action("DeleteContact","Admin",new { id=item.Id})" class="btn btn-danger"><i class="fas fa-trash"></i></a></td>
+</tr>
+    }
+</table>

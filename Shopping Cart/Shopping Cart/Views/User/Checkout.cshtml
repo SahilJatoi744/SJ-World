@@ -1,0 +1,57 @@
+﻿@model Shopping_Cart.Models.order
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/UserMaster.cshtml";
+}
+@{
+    int total = ViewBag.tot;
+}
+<br />
+<br />
+<center><h2>Checkout</h2></center>
+<br />
+<br />
+@using (Html.BeginForm("Checkout", "User", FormMethod.Post))
+{
+    <input type="hidden" value="@Session["id"]" name="CustomerId" />
+    <br />
+    <label>Name :</label>
+    <br />
+    <input type="text" value="@Session["name"]" name="Name" class="form-control" readonly />
+    <br />
+    <label>Email :</label>
+    <br />
+    <input type="email" value="@Session["email"]" class="form-control" name="Email" readonly />
+    <br />
+    <label>CellNo :</label>
+    @Html.TextBoxFor(a => a.CellNo, new { @class = "form-control", placeholder = "Cell No", required = "required", })
+    <br />
+    <label>Total Amount :</label>
+    <br />
+    <input type="text" value="@total" class="form-control" name="TotalAmount" />
+    <br />
+    <label>Address :</label>
+    <br />
+    @Html.TextBoxFor(a => a.Address, new { @class = "form-control", placeholder = "Address here...", required = "required", })
+    <br />
+    <label>Shipping Address :</label>
+    <br />
+    @Html.TextBoxFor(a => a.ShippingAddress, new { @class = "form-control", placeholder = "Shipping Address here...", required = "required", })
+    <br />
+    <label>Delivery Charges :</label>
+    <br />
+    <input type="text" value="100" readonly class="form-control" name="DeliveryCharge" />
+    <br />
+    <label>Payment Type :</label>
+    <br />
+    <select class="form-control" required name="Payment_Type">
+        <option value="">----------------------Select Payment Method------------------------</option>
+        <option value="Cash On Delivery">Cash On Delivery</option>
+        <option value="Online Payment">Online Payment</option>
+   </select>
+   <br />
+    <input type="submit" class="btn btn-warning" value="Order Now" />
+
+
+}
+

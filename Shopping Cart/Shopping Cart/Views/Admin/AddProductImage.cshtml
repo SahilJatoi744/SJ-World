@@ -1,0 +1,34 @@
+﻿@model Shopping_Cart.Models.productimage
+@{
+    ViewBag.Title = "AddProductImage";
+    Layout = "~/Views/Shared/AdminMaster.cshtml";
+}
+<br />
+<br />
+<center><h2>Add Product Image</h2></center>
+<br />
+<br />
+
+@using (Html.BeginForm("AddProductImage", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <label>Select Your Pictures</label>
+    <br />
+
+    <input type="file" name="p" />
+    <br />
+
+    <input type="hidden" name="id" value="@ViewBag.id">
+    <input type="submit" class="btn btn-success" />
+
+}
+<br /><br />
+
+@{
+
+    int b = ViewBag.id;
+    var a =new Shopping_Cart.Models.MartEntities().productimages.Where(v => v.ProductId == b).ToList();
+}
+@foreach (var item in a)
+{
+    <img src="~/img/product/@item.ImageURL" width="100px" height="100px" style="margin-left:20px" />
+}

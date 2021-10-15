@@ -1,0 +1,108 @@
+﻿@model Shopping_Cart.Models.product
+@{
+    ViewBag.Title = "ProductDetail";
+    Layout = "~/Views/Shared/UserMaster.cshtml";
+}
+
+<br />
+<br />
+<center><h2>ProductDetail</h2></center>
+
+<br />
+<br />
+<div class="col-sm-9 padding-right">
+    <div class="product-details">
+        <!--product-details-->
+        <div class="col-sm-5">
+            <div class="view-product">
+
+                @{
+                    int id = ViewBag.Id;
+                    var pro = new Shopping_Cart.Models.MartEntities().products.Where(a => a.Id == id).FirstOrDefault();
+
+                    var p_img = new Shopping_Cart.Models.MartEntities().productimages.ToList();
+                    string b = "";
+                    foreach (var item in p_img)
+                    {
+                        if (item.ProductId == pro.Id)
+                        {
+                            b = item.ImageURL;
+                        }
+                    }
+
+                }
+
+                <img src="~/img/product/@b" id="cont" width="400px" height="300px" alt="" />
+                <h3>ZOOM</h3>
+            </div>
+            <div id="similar-product" class="carousel slide" data-ride="carousel">
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    @{
+                        foreach (var item in p_img)
+                        {
+                            if (item.ProductId == pro.Id)
+                            {
+                                <div class="item active">
+                                    <a href=""><img src="~/img/product/@item.ImageURL" onclick="return abc(this)" width="100px" style="float:left;height:100px" alt=""></a>
+                                </div>
+                        }
+                    }
+
+                    }
+
+                </div>
+
+                <!-- Controls -->
+                <a class="left item-control" href="#similar-product" data-slide="prev">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                <a class="right item-control" href="#similar-product" data-slide="next">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+
+        </div>
+        <div class="col-sm-7">
+            <div class="product-information">
+                <!--/product-information-->
+                <img src="images/product-details/new.jpg" class="newarrival" alt="" />
+                <h2>@pro.Name</h2>
+                <p>Id: @pro.Id</p>
+                <img src="images/product-details/rating.png" alt="" />
+                <span>
+                    <span>US $@pro.Price</span>
+                    @{
+                        using (Html.BeginForm("Cart", "User", FormMethod.Post))
+                        {
+                            
+                            <input type="hidden" name="cid" value="@pro.Id" />
+                            <label>Quantity:</label>
+                            <input type="number" value="1" name="cqty" min="1" max="10000" />
+                            <button type="submit" class="btn btn-fefault cart">
+                                <i class="fa fa-shopping-cart"></i>
+                                Add to cart
+                            </button>
+
+                        }
+                    }
+                </span>
+                <p><b>Availability:</b> In Stock</p>
+                <p><b>Condition:</b> New</p>
+                <p><b>Brand:</b> @pro.brand.Name</p>
+                <a href=""><img src="images/product-details/share.png" class="share img-responsive" alt="" /></a>
+            </div><!--/product-information-->
+        </div>
+    </div><!--/product-details-->
+    </div>
+
+    
+        <script>
+            function abc(img) {
+                var a = document.getElementById("cont");
+                a.src = img.src;
+                return false; //due to it page will not reload
+                 }
+        </script>
+        

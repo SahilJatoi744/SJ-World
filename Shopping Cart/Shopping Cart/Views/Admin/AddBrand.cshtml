@@ -1,0 +1,22 @@
+﻿@model Shopping_Cart.Models.brand
+@{
+    ViewBag.Title = "AddBrand";
+    Layout = "~/Views/Shared/AdminMaster.cshtml";
+}
+<br />
+<center><h2> AddBrand</h2></center>
+<br />
+<br />
+@using (Html.BeginForm("AddBrand", "Admin", FormMethod.Post))
+{
+    <label>Brand Name</label>
+    <br />
+    <br />
+    @Html.TextBoxFor(a => a.Name, new { @class = "form-control", placeholder = "Brand Name here...", required = "required" })
+    <br />
+    <br />
+
+    <input type="submit" value="Add Brand" class="btn btn-success">
+}
+
+

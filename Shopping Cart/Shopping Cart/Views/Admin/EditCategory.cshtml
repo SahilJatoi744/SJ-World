@@ -1,0 +1,21 @@
+﻿@model Shopping_Cart.Models.category
+@{
+    ViewBag.Title = "EditCategory";
+    Layout = "~/Views/Shared/AdminMaster.cshtml";
+}
+<br />
+<center><h2>Edit Category</h2></center>
+<br />
+<br />
+@using (Html.BeginForm("EditCategory", "Admin", FormMethod.Post))
+{
+    @Html.HiddenFor(a => a.Id)
+    <label>Category Name</label>
+    <br />
+    <br />
+    @Html.TextBoxFor(a => a.Name, new { @class = "form-control", placeholder = "Category Name here...", required = "required" })
+    <br />//=> due to it(lamda expression) data will be filled
+    <br />
+
+    <input type="submit" value="Edit Category" class="btn btn-success">
+}
